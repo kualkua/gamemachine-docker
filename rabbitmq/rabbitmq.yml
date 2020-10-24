@@ -1,0 +1,13 @@
+version: '2'
+
+services:
+  rabbitmqgam:
+    build: ./../rabbitmq
+    volumes:
+      - ./enabled_plugins:/etc/rabbitmq/enabled_plugins
+      - ./../log/rabbitmq:/var/log/rabbitmq/startup_log
+      - ./../log/rabbitmq:/var/log/rabbitmq/startup_err
+      - ./data/rabbitmq:/var/lib/rabbitmq/mnesia/
+      #- ./rabbitmq.config:/etc/rabbitmq/rabbitmq.config
+      #- "./rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro"
+      #- "./autocluster-0.4.1.ez:/usr/lib/rabbitmq/lib/rabbitmq_server-3.5.5/plugins/autocluster-0.4.1.ez"
