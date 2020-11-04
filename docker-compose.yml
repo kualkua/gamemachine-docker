@@ -1,23 +1,42 @@
-version: '2'
+version: '3'
 
 services:
 
-  rabbitmqgam:
-    container_name: rabbitmqgam
-    hostname: "rabbitmqgam"
-    image: "rabbitmq"
-    extends:
-      file: ./rabbitmq/rabbitmq.yml
-      service: rabbitmqgam
+#  gamrabbitmqgam:
+#    container_name: gamrabbitmqgam
+#    hostname: "gamrabbitmq"
+#    image: "rabbitmq"
+#    extends:
+#      file: ./rabbitmq/rabbitmq.yml
+#      service: rabbitmqgam
+#    environment:
+#      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+#      RABBITMQ_DEFAULT_USER: "rabbitmq"
+#      RABBITMQ_DEFAULT_PASS: "rabbitmq"
+#      RABBITMQ_HOST: "rabbitmqplatform"
+#      RABBITMQ_PORT: "5672"
+#      RABBITMQ_DEFAULT_VHOST: "/"
+#    ports:
+#      - "15672:15672"
+#      - "5672:5672"
+#    labels:
+#      NAME: "rabbitmqgam"
+
+  gambackoffice:
+    container_name: gambackoffice
+    image: node:14
+    working_dir: /backoffice
+    build:
+      context: ./../backoffice
+    command: "npm start"
     environment:
-      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
-      RABBITMQ_DEFAULT_USER: "rabbitmq"
-      RABBITMQ_DEFAULT_PASS: "rabbitmq"
-      RABBITMQ_HOST: "rabbitmqplatform"
-      RABBITMQ_PORT: "5672"
-      RABBITMQ_DEFAULT_VHOST: "/"
+      - NODE_ENV=development
+      - NODE_PORT=3000
+    volumes:
+      - ./../backoffice:/backoffice
+#    links:
+#      - gaminatormysql
+    expose:
+      - 3000
     ports:
-      - "15672:15672"
-      - "5672:5672"
-    labels:
-      NAME: "rabbitmqgam"
+      - 3000:3000
