@@ -2,6 +2,39 @@ version: '3'
 
 services:
 
+  gammysql:
+    container_name: gammmongo
+    image: mongo:latest
+    ports:
+      - "27017-27019:27017-27019"
+    environment:
+      # TERM: xterm
+      MONGO_INITDB_DATABASE : "gamembo"
+      MONGO_INITDB_ROOT_USERNAME: "admin"
+      MONGO_INITDB_ROOT_PASSWORD: 'admin'
+
+      MONGODB_HOST: "gammmongo"
+      MONGO_DATA_DIR: "/data/db"
+      MONGO_LOG_DIR: "/dev/null"
+    volumes:
+      - ./mongo/data:/data/db  
+      - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+
+
+
+  # gammysql:
+  #   container_name: gammysql
+  #   image: mysql:5.7
+  #   volumes:
+  #     - ./db_data:/var/lib/mysql
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: root
+  #     MYSQL_DATABASE: gambo
+  #     MYSQL_PASSWORD: root
+  #   ports:
+  #     - "3310:3306"
+
 #  gamrabbitmqgam:
 #    container_name: gamrabbitmqgam
 #    hostname: "gamrabbitmq"
@@ -22,21 +55,21 @@ services:
 #    labels:
 #      NAME: "rabbitmqgam"
 
-  gambackoffice:
-    container_name: gambackoffice
-    image: node:14
-    working_dir: /backoffice
-    build:
-      context: ./../backoffice
-    command: "npm start"
-    environment:
-      - NODE_ENV=development
-      - NODE_PORT=3000
-    volumes:
-      - ./../backoffice:/backoffice
-#    links:
-#      - gaminatormysql
-    expose:
-      - 3000
-    ports:
-      - 3000:3000
+#   gambackoffice:
+#     container_name: gambackoffice
+#     image: node:14
+#     working_dir: /backoffice
+#     build:
+#       context: ./../backoffice
+#     command: "npm start"
+#     environment:
+#       - NODE_ENV=development
+#       - NODE_PORT=3000
+#     volumes:
+#       - ./../backoffice:/backoffice
+# #    links:
+# #      - gaminatormysql
+#     expose:
+#       - 3000
+#     ports:
+#       - 3000:3000

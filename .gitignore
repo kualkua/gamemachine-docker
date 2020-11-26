@@ -1,2 +1,4 @@
 /log/
 /rabbitmq/data/
+/db_data
+/mongo/data
