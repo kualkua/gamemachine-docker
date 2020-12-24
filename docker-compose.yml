@@ -20,7 +20,12 @@ services:
       - ./mongo/data:/data/db  
       - ./mongo/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
 
+    networks:
+        - gaminator
 
+networks:
+    gaminator:
+        external: true
 
   # gammysql:
   #   container_name: gammysql
