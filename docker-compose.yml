@@ -4,6 +4,7 @@ services:
 
   gammysql:
     container_name: gammmongo
+    restart: always
     image: mongo:latest
     ports:
       - "27017-27019:27017-27019"
