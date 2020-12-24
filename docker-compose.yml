@@ -11,7 +11,7 @@ services:
       # TERM: xterm
       MONGO_INITDB_DATABASE : "gamembo"
       MONGO_INITDB_ROOT_USERNAME: "admin"
-      MONGO_INITDB_ROOT_PASSWORD: 'admin'
+      MONGO_INITDB_ROOT_PASSWORD: 'NVkoofkqa7iN5fafmBF9'
 
       MONGODB_HOST: "gammmongo"
       MONGO_DATA_DIR: "/data/db"
