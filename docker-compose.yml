@@ -10,7 +10,7 @@ services:
       - "27017-27019:27017-27019"
     environment:
       # TERM: xterm
-      MONGO_INITDB_DATABASE : "gamembo"
+      MONGO_INITDB_DATABASE : "admin"
       MONGO_INITDB_ROOT_USERNAME: "admin"
       MONGO_INITDB_ROOT_PASSWORD: 'NVkoofkqa7iN5fafmBF9'
 
